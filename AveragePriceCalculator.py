@@ -28,15 +28,21 @@ def calcAvgPrices(sym):
             sellSum += float(x['size']) * float(x['price'])
             sellTotalSize += float(x['size'])
     
-    return (sym, buySum/buyTotalSize if buyTotalSize else 0, sellSum/sellTotalSize if sellTotalSize else 0)
+    return (sym, buySum/buyTotalSize if buyTotalSize else "--------", sellSum/sellTotalSize if sellTotalSize else "--------")
+
+def asStrings(x):
+    if isinstance(x, tuple) and len(x) == 3:
+        elem1 = x[0]
+        elem2 = x[1] if isinstance(x[1], str) else str(round(x[1], 2))
+        elem3 = x[2] if isinstance(x[2], str) else str(round(x[2], 2))
+        return (elem1, elem2, elem3)
+    else:
+        raise TypeError('Only works with 3-element tuple (str, float, float)')
 
 
 tickers = ['BTC-USD','ETH-USD','BCH-USD','LTC-USD','ETH-BTC']
 
 print('\nSymbol       Average Buying Price    Average Selling Price')
 for t in tickers:
-    x = calcAvgPrices(t)
-    if isinstance(x[1], str):
-        print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
-    else:
-        print('{:10}   {:20.2f}    {:21.2f}'.format(x[0], x[1], x[2]))
+    x = asStrings(calcAvgPrices(t))
+    print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
