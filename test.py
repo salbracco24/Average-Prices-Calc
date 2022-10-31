@@ -11,13 +11,16 @@ def calcAvgPrices(sym):
         fills.append(x)
     print(fills)
 
-calcAvgPrices('ETH-BTC')
+# calcAvgPrices('ETH-BTC')
 
 prices = [('MATIC-USD', 10.52, 1057.53), ('ALGO-USD', 2000.23, 500.117), ('SHIT-USD', "ERROR", "ERROR"), ('BTC-USD', "--------", "--------")]
 
-print('\nSymbol       Average Buying Price    Average Selling Price')
+print('\n\u0332Symbol       Average Buying Price    Average Selling Price')
+print('----------------------------------------------------------')
 for x in prices:
     if isinstance(x[1], str):
         print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
+        print('----------------------------------------------------------')
     else:
         print('{:10}   {:20.2f}    {:21.2f}'.format(x[0], x[1], x[2]))
+        print('----------------------------------------------------------')

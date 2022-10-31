@@ -10,10 +10,12 @@ def calcAvgPrices(sym):
     for x in fillsGetter:
         fills.append(x)
     
+    nofillsInd = "--------" # no fills indicator
+    errorInd = "ERROR" # error indicator
     if not fills: # no fills found for that product_id
-        return (sym, "--------", "--------")
+        return (sym, nofillsInd, nofillsInd)
     if fills[0] == 'message': # error (probably invalid product_id)
-        return (sym, "ERROR", "ERROR")
+        return (sym, errorInd, errorInd)
     
     buySum = 0 # weighted sum for buys
     buyTotalSize = 0 # sum of sizes for buys
@@ -28,7 +30,7 @@ def calcAvgPrices(sym):
             sellSum += float(x['size']) * float(x['price'])
             sellTotalSize += float(x['size'])
     
-    return (sym, buySum/buyTotalSize if buyTotalSize else "--------", sellSum/sellTotalSize if sellTotalSize else "--------")
+    return (sym, buySum/buyTotalSize if buyTotalSize else nofillsInd, sellSum/sellTotalSize if sellTotalSize else nofillsInd)
 
 def asStrings(x):
     if isinstance(x, tuple) and len(x) == 3:
@@ -40,9 +42,14 @@ def asStrings(x):
         raise TypeError('Only works with 3-element tuple (str, float, float)')
 
 
-tickers = ['BTC-USD','ETH-USD','BCH-USD','LTC-USD','ETH-BTC']
+tickers_old = ['BTC-USD','ETH-USD','BCH-USD','LTC-USD','MATIC-USD','SOL-USD','SHIT-USD']
+tickers = ['ADA-USD', 'ALGO-USD', 'ATOM-USD', 'AVAX-USD', 'BAT-USD', 'BCH-USD', 
+'BTC-USD', 'BUSD-USD', 'CRV-USD', 'DOGE-USD', 'DOT-USD', 'Dai-USD', 
+'ETC-USD', 'ETH-USD', 'FIL-USD', 'LINK-USD', 'LTC-USD', 'MANA-USD', 
+'MATIC-USD', 'OMG-USD', 'SHIB-USD', 'SOL-USD', 'XLM-USD', 'XTZ-USD']
 
-print('\nSymbol       Average Buying Price    Average Selling Price')
+lineSep = '\n----------------------------------------------------------\n' # separates each line in the table
+print('\nSymbol       Average Buying Price    Average Selling Price', end = lineSep) # table header
 for t in tickers:
     x = asStrings(calcAvgPrices(t))
-    print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
+    print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]), end = lineSep)
