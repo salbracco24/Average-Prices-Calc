@@ -15,12 +15,20 @@ def calcAvgPrices(sym):
 
 prices = [('MATIC-USD', 10.52, 1057.53), ('ALGO-USD', 2000.23, 500.117), ('SHIT-USD', "ERROR", "ERROR"), ('BTC-USD', "--------", "--------")]
 
-print('\n\u0332Symbol       Average Buying Price    Average Selling Price')
-print('----------------------------------------------------------')
-for x in prices:
-    if isinstance(x[1], str):
-        print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
-        print('----------------------------------------------------------')
-    else:
-        print('{:10}   {:20.2f}    {:21.2f}'.format(x[0], x[1], x[2]))
-        print('----------------------------------------------------------')
+# print('\nSymbol       Average Buying Price    Average Selling Price')
+# print('----------------------------------------------------------')
+# for x in prices:
+#     if isinstance(x[1], str):
+#         print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]))
+#         print('----------------------------------------------------------')
+#     else:
+#         print('{:10}   {:20.2f}    {:21.2f}'.format(x[0], x[1], x[2]))
+#         print('----------------------------------------------------------')
+
+# lines = []
+with open('syms.txt') as f:
+    lines = [line.strip() for line in f.readlines() if line.strip()]
+    #for line in f:
+    #    print(line.strip(), end ='\n')
+for x in lines:
+    print(x)

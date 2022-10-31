@@ -35,18 +35,15 @@ def calcAvgPrices(sym):
 def asStrings(x):
     if isinstance(x, tuple) and len(x) == 3:
         elem1 = x[0]
-        elem2 = x[1] if isinstance(x[1], str) else str(round(x[1], 2))
-        elem3 = x[2] if isinstance(x[2], str) else str(round(x[2], 2))
+        elem2 = x[1] if isinstance(x[1], str) else str(round(x[1], 3))
+        elem3 = x[2] if isinstance(x[2], str) else str(round(x[2], 3))
         return (elem1, elem2, elem3)
     else:
         raise TypeError('Only works with 3-element tuple (str, float, float)')
 
 
-tickers_old = ['BTC-USD','ETH-USD','BCH-USD','LTC-USD','MATIC-USD','SOL-USD','SHIT-USD']
-tickers = ['ADA-USD', 'ALGO-USD', 'ATOM-USD', 'AVAX-USD', 'BAT-USD', 'BCH-USD', 
-'BTC-USD', 'BUSD-USD', 'CRV-USD', 'DOGE-USD', 'DOT-USD', 'Dai-USD', 
-'ETC-USD', 'ETH-USD', 'FIL-USD', 'LINK-USD', 'LTC-USD', 'MANA-USD', 
-'MATIC-USD', 'OMG-USD', 'SHIB-USD', 'SOL-USD', 'XLM-USD', 'XTZ-USD']
+with open('syms.txt') as f:
+    tickers = [line.strip() for line in f.readlines() if line.strip()] # strips each line and ignores blank lines
 
 lineSep = '\n----------------------------------------------------------\n' # separates each line in the table
 print('\nSymbol       Average Buying Price    Average Selling Price', end = lineSep) # table header
