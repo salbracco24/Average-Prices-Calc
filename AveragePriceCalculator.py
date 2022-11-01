@@ -1,8 +1,11 @@
 import cbpro
 
-auth_client = cbpro.AuthenticatedClient("ea756e2bb49d2a89e4aef6b238b05319",
-                                       "F6krWqaIqcO2P7R+WRvLMV2WzWIMOd4oEu50y7tDwNdNWyTQvIGQTvKxygDK/4MJWsKeyhAQKfTMtvn40kCI2g==",
-                                       "eeg4jyop58q")
+with open('auth.txt') as f:
+    authInfo = [line.strip() for line in f.readlines() if line.strip()] # [name, key, b64secret, passphrase]
+
+print('\n{:^58}'.format('For ' + authInfo.pop(0))) # prints the user's name
+
+auth_client = cbpro.AuthenticatedClient(*authInfo[0:3])
 
 def calcAvgPrices(sym):
     fillsGetter = auth_client.get_fills(product_id = sym)
@@ -50,3 +53,5 @@ print('\nSymbol       Average Buying Price    Average Selling Price', end = line
 for t in tickers:
     x = asStrings(calcAvgPrices(t))
     print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]), end = lineSep)
+
+input('\n{:^58}\n'.format('Created by Salvatore (2022)'))
