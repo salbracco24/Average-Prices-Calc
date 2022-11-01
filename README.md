@@ -27,7 +27,7 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ## Getting Started
 1. Login to Coinbase Pro, and press your profile pic (in the top right corner), then API.
 2. Generate a new API key (+ New API Key), with the "View" permission at minimum. *Note your Passphrase and API secret, they are only displayed once.*
-3. Document your key, API secret, and passphrase in a file "auth.txt," along with your name, and save it within this directory, as shown below (each element on a separate line):
+3. Document your key, API secret, and passphrase in a file `auth.txt`, along with your name, and save it within this directory, as shown below (each element on a separate line):
 ```
 Salvatore Bracco
 db70a7f6498dd7f9bcad29d077be779d
@@ -37,8 +37,8 @@ xhhpas1ijmi
 
 4. Install [Python](https://www.python.org/downloads/) 3.9.0.
 > Note: This script works on Windows 10 with Python 3.9.0. Other platforms and/or versions are not guaranteed at this time.
-5. Install the [Coinbase Pro Python wrapper](https://github.com/danpaquin/coinbasepro-python) by running `pip install cbpro`
+5. Install the [Coinbase Pro Python wrapper](https://github.com/danpaquin/coinbasepro-python) by running `pip install cbpro`.
 
 ### Usage
-1. Define the symbols you wish to display in the `syms.txt` file. 
-2. Open the `Average Prices Calculator.py` and it should run in a window. Press "enter" to close the window.
+1. Define the symbols you wish to calculate prices for in the `syms.txt` file (one on each line). 
+2. Open the `Average Prices Calculator.py` and it should run in a window. Press "enter" key to close the window.
