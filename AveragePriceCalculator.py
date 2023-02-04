@@ -1,17 +1,19 @@
-import cbpro
+from authenticated_client import AuthenticatedClient;
+from SimplePrices import getFills;
 
 with open('auth.txt') as f:
     authInfo = [line.strip() for line in f.readlines() if line.strip()] # [name, key, b64secret, passphrase]
 
 print('\n{:^58}'.format('For ' + authInfo.pop(0))) # prints the user's name
 
-auth_client = cbpro.AuthenticatedClient(*authInfo[0:3])
+auth_client = AuthenticatedClient(*authInfo[0:3])
 
 def calcAvgPrices(sym):
-    fillsGetter = auth_client.get_fills(product_id = sym)
+    fillsGetter = auth_client.get_fills(product_id = sym) # gets the fills from Coinbase Pro (legacy)
     fills = []
     for x in fillsGetter:
         fills.append(x)
+    fills.extend(getFills(authInfo[3], authInfo[4], sym))  # adds the fills from Coinbase Advanced
     
     nofillsInd = "--------" # no fills indicator
     errorInd = "ERROR" # error indicator
@@ -26,7 +28,7 @@ def calcAvgPrices(sym):
     sellTotalSize = 0 # sum of sizes for sells
     
     for x in fills:
-        if x['side'] == 'buy': # buys
+        if x['side'] in {'buy', 'BUY'}: # buys
             buySum += float(x['size']) * float(x['price'])
             buyTotalSize += float(x['size'])
         else: # sells

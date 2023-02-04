@@ -23,16 +23,24 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ## Under Development
 - Unit tests
 - Adding Python 3.11 support
+- Make Coinbase Advanced pagination work
+- Fix ReadMe
+- Clean up code
+- Add docstrings
+- Make error messages more useful
 
 ## Getting Started
 1. Login to Coinbase Pro, and press your profile pic (in the top right corner), then API.
 2. Generate a new API key (+ New API Key), with the "View" permission at minimum. *Note your Passphrase and API secret, they are only displayed once.*
-3. Document your key, API secret, and passphrase in a file `auth.txt`, along with your name, and save it within this directory, as shown below (each element on a separate line):
+3. Document your key, API secret, passphrase, new API key, and new secret key in a file `auth.txt`, along with your name, and save it within this directory, as shown below (each element on a separate line):
 ```
 Salvatore Bracco
 db70a7f6498dd7f9bcad29d077be779d
 xZEo5hAQqdWAA6ZbhI1X9wTsZiZXqikRL9awpCgpRbIGPBfILrbn2lJeeHY7eS9U4z9p5dGus68avl2cLLTkWg==
 xhhpas1ijmi
+
+gRllCD7P4lVsHnlS
+xZ0dSgdmLt66WwefAQZQLP21fd3234jk
 ```
 
 4. Install [Python](https://www.python.org/downloads/) 3.9.0.
