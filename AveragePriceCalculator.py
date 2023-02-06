@@ -50,10 +50,10 @@ def asStrings(x):
 with open('syms.txt') as f:
     tickers = [line.strip() for line in f.readlines() if line.strip()] # strips each line and ignores blank lines
 
-lineSep = '\n----------------------------------------------------------\n' # separates each line in the table
-print('\nSymbol       Average Buying Price    Average Selling Price', end = lineSep) # table header
+lineSep = '\n-----------------------------------------------------------\n' # separates each line in the table
+print('\nSymbol        Average Buying Price    Average Selling Price', end = lineSep) # table header
 for t in tickers:
     x = asStrings(calcAvgPrices(t))
-    print('{:10}   {:>20}    {:>21}'.format(x[0], x[1], x[2]), end = lineSep)
+    print('{:11}   {:>20}    {:>21}'.format(x[0], x[1], x[2]), end = lineSep)
 
 input('\n{:^58}\n'.format('Created by Salvatore (2022)'))
